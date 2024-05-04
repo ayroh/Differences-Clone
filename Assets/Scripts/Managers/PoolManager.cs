@@ -2,32 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager : MonoBehaviour
+public class PoolManager : Singleton<PoolManager>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-}
 
-List<LevelData> Levels;
-
-public class LevelData
-{
-    Sprite background;
-    List<ObjectData> levelObjects;
-
-}
-
-public struct ObjectData
-{
-    Sprite object1, object2;
-    Vector3 localPosition;
 }

@@ -1,18 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+using Utilities.Enums;
 
 
-namespace Utilities.Signal
+namespace Utilities.Signals
 {
     public static class Signals
     {
 
         public static Action<bool> OnInputAdd = delegate { };
 
-        public static Action<bool/*enum*/> OnLevelStatusChanged = delegate { };
+        public static Action<GameState> OnGameStateChanged = delegate { };
 
 
     }

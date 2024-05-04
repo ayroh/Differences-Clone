@@ -1,7 +1,9 @@
 // ENUM
 
+using System;
+
 namespace Utilities.Enums
 {
-    public enum GameState { Play, Pause, Finished }
+    public enum GameState { Play, Pause, Fail, Success}
 
 }
