@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pool;
+using Utilities.Constants;
 
 public class DifferenceObject : MonoBehaviour, IClickable, IPoolable
 {
 
     [SerializeField] private SpriteRenderer mainSpriteRenderer;
+    [SerializeField] private BoxCollider2D boxCollider;
 
     private DifferenceObject pairDifferenceObject;
 
@@ -33,8 +35,21 @@ public class DifferenceObject : MonoBehaviour, IClickable, IPoolable
         gameObject.SetActive(false);
     }
 
-    public void SetSprite(Sprite newSprite)
+    public void SetPair(DifferenceObject pair) => pairDifferenceObject = pair;
+
+    public void SetSprite(Sprite newSprite, int orderInLayer = 0)
     {
         mainSpriteRenderer.sprite = newSprite;
+        mainSpriteRenderer.sortingOrder = orderInLayer;
+
+        if(mainSpriteRenderer.sprite != null)
+        {
+            boxCollider.enabled = true;
+            boxCollider.size = mainSpriteRenderer.size * Constants.SpriteColliderSizeConstant;
+        }
+        else
+        {
+            boxCollider.enabled = false;
+        }
     }
 }

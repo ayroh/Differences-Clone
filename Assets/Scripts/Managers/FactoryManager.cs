@@ -8,11 +8,47 @@ namespace Factory
 {
     public class FactoryManager : MonoBehaviour
     {
-        public DifferenceObject GetDifferenceObject(Sprite sprite)
+        [Header("Parents")]
+        [SerializeField] private Transform image1Parent;
+        [SerializeField] private Transform image2Parent;
+
+
+        public void FillDifferenceObjectPair(ref DifferenceObject difference1, ref DifferenceObject difference2, DifferenceData differenceData)
         {
-            DifferenceObject differenceObject = (DifferenceObject)PoolManager.instance.Get(PoolObjectType.Difference);
-            differenceObject.SetSprite(sprite);
-            return differenceObject;
+            if(differenceData.difference1.sprite == null && differenceData.difference2.sprite == null)
+            {
+                Debug.LogError("FactoryManager: Fill, both difference sprites are null!");
+                return;
+            }
+
+            difference1 = (DifferenceObject)PoolManager.instance.Get(PoolObjectType.Difference, image1Parent);
+            if(differenceData.difference1.sprite == null)
+            {
+                difference1.SetSprite(null, differenceData.difference2.orderInLayer);
+                difference1.transform.localPosition = differenceData.difference2.localPosition;
+            }
+            else
+            {
+                difference1.SetSprite(differenceData.difference1.sprite, differenceData.difference1.orderInLayer);
+                difference1.transform.localPosition = differenceData.difference1.localPosition;
+            }
+
+            difference2 = (DifferenceObject)PoolManager.instance.Get(PoolObjectType.Difference, image2Parent);
+            if (differenceData.difference2.sprite == null)
+            {
+                difference2.SetSprite(null, differenceData.difference1.orderInLayer);
+                difference2.transform.localPosition = differenceData.difference1.localPosition;
+            }
+            else
+            {
+                difference2.SetSprite(differenceData.difference2.sprite, differenceData.difference2.orderInLayer);
+                difference2.transform.localPosition = differenceData.difference2.localPosition;
+            }
+
+            difference1.SetPair(difference2);
+            difference2.SetPair(difference1);
         }
+
+        //public SpriteRenderer GetSpriteRenderer()
     }
 }

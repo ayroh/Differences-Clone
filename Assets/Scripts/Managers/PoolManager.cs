@@ -46,10 +46,15 @@ namespace Pool
                 Release(pooledObjectsTemp.Pop());
         }
 
-        public IPoolable Get(PoolObjectType poolObjectType)
+        public IPoolable Get(PoolObjectType poolObjectType, Transform parent = null)
         {
             IPoolable poolable = poolTypeTpPoolItemDictionary[poolObjectType].Pop();
-            poolable.Initialize(ingameParent);
+
+            if (parent != null)
+                poolable.Initialize(parent);
+            else
+                poolable.Initialize(ingameParent);
+
             return poolable;
         }
 
