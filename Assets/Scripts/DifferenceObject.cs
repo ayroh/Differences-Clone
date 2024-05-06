@@ -20,14 +20,20 @@ public class DifferenceObject : SpriteObject, IClickable, IPoolable
 
     public void Click()
     {
-        throw new System.NotImplementedException();
+        Found();
+        pairDifferenceObject.Found();
+    }
+
+    public void Found()
+    {
+        boxCollider.enabled = false;
     }
 
     public void SetPair(DifferenceObject pair) => pairDifferenceObject = pair;
 
-    public override void SetSprite(Sprite newSprite, int orderInLayer = 0)
+    public override void SetSprite(Sprite newSprite, int orderInLayer = 0, float spriteAlpha = 1f)
     {
-        base.SetSprite(newSprite, orderInLayer);
+        base.SetSprite(newSprite, orderInLayer, spriteAlpha);
 
         if(mainSpriteRenderer.sprite != null)
         {

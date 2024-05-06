@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameState gameState { get; private set; }
 
+    private void Start()
+    {
+        SetGameState(GameState.Play);
+    }
+
     public void SetGameState(GameState newGameState)
     {
         switch (gameState)
@@ -28,6 +33,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        Signals.OnGameStateChanged(gameState);
+        Signals.OnGameStateChanged?.Invoke(gameState);
     }
 }

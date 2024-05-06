@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4194823555501828574}
   - component: {fileID: 4974993002371671302}
   - component: {fileID: 8069948494598923721}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DifferenceObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -24,9 +24,10 @@ public class SpriteObject : MonoBehaviour, IPoolable
         gameObject.SetActive(false);
     }
 
-    public virtual void SetSprite(Sprite newSprite, int orderInLayer = 0)
+    public virtual void SetSprite(Sprite newSprite, int orderInLayer = 0, float spriteAlpha = 1f)
     {
         mainSpriteRenderer.sprite = newSprite;
         mainSpriteRenderer.sortingOrder = orderInLayer;
+        mainSpriteRenderer.color = new Color(mainSpriteRenderer.color.r, mainSpriteRenderer.color.g, mainSpriteRenderer.color.b, spriteAlpha);
     }
 }

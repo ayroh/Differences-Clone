@@ -2,6 +2,7 @@ using Factory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities.Signals;
 
 public class LevelManager : MonoBehaviour
 {
@@ -18,8 +19,6 @@ public class LevelManager : MonoBehaviour
 
     private void CreateLevel(LevelData levelData)
     {
-
-
         for(int i = 0;i < levelData.differences.Count;++i)
         {
             DifferenceObject difference1 = null, difference2 = null;
@@ -31,12 +30,6 @@ public class LevelManager : MonoBehaviour
             SpriteObject bothLevelSprite1 = null, bothLevelSprite2 = null;
             factoryManager.FillSpriteObjectPair(bothLevelSprite1, bothLevelSprite2, levelData.bothLevelSprites[i]);
         }
-
-
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }
