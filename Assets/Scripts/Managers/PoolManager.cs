@@ -115,6 +115,7 @@ namespace Pool
     public enum PoolObjectType
     {
         Difference,
-        Particle
+        Particle,
+        Sprite
     }
 }

@@ -13,13 +13,13 @@ public class LevelData : ScriptableObject
 
 
 [Serializable]
-public struct DifferenceData
+public class DifferenceData
 {
     public SpriteData difference1, difference2;
 }
 
 [Serializable]
-public struct SpriteData
+public class SpriteData
 {
     public Sprite sprite;
     public Vector2 localPosition;

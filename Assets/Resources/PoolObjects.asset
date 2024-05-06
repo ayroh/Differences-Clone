@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PoolObjects
   m_EditorClassIdentifier: 
   differenceObject: {fileID: 4974993002371671302, guid: 1cd7387c4b963fe4882afae0cccf04e7, type: 3}
+  spriteObject: {fileID: 4470385407307062239, guid: 975fdd9308ca73b40aa245911698e4ce, type: 3}

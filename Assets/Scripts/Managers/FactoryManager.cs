@@ -13,7 +13,7 @@ namespace Factory
         [SerializeField] private Transform image2Parent;
 
 
-        public void FillDifferenceObjectPair(ref DifferenceObject difference1, ref DifferenceObject difference2, DifferenceData differenceData)
+        public void FillDifferenceObjectPair(DifferenceObject difference1, DifferenceObject difference2, DifferenceData differenceData)
         {
             if(differenceData.difference1.sprite == null && differenceData.difference2.sprite == null)
             {
@@ -49,6 +49,15 @@ namespace Factory
             difference2.SetPair(difference1);
         }
 
-        //public SpriteRenderer GetSpriteRenderer()
+        public void FillSpriteObjectPair(SpriteObject spriteObject1, SpriteObject spriteObject2, SpriteData spriteData)
+        {
+            spriteObject1 = (SpriteObject)PoolManager.instance.Get(PoolObjectType.Sprite, image1Parent);
+            spriteObject1.SetSprite(spriteData.sprite, spriteData.orderInLayer);
+            spriteObject1.transform.localPosition = spriteData.localPosition;
+
+            spriteObject2 = (SpriteObject)PoolManager.instance.Get(PoolObjectType.Sprite, image2Parent);
+            spriteObject2.SetSprite(spriteData.sprite, spriteData.orderInLayer);
+            spriteObject2.transform.localPosition = spriteData.localPosition;
+        }
     }
 }

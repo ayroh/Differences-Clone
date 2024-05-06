@@ -23,10 +23,15 @@ public class LevelManager : MonoBehaviour
         for(int i = 0;i < levelData.differences.Count;++i)
         {
             DifferenceObject difference1 = null, difference2 = null;
-            factoryManager.FillDifferenceObjectPair(ref difference1, ref difference2, levelData.differences[i]);
-
-            
+            factoryManager.FillDifferenceObjectPair(difference1, difference2, levelData.differences[i]);
         }
+
+        for (int i = 0;i < levelData.bothLevelSprites.Count;++i)
+        {
+            SpriteObject bothLevelSprite1 = null, bothLevelSprite2 = null;
+            factoryManager.FillSpriteObjectPair(bothLevelSprite1, bothLevelSprite2, levelData.bothLevelSprites[i]);
+        }
+
 
     }
 

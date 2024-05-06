@@ -7,12 +7,14 @@ using UnityEngine;
 public class PoolObjects : ScriptableObject
 {
     [SerializeField] private DifferenceObject differenceObject;
+    [SerializeField] private SpriteObject spriteObject;
 
     public Dictionary<IPoolable, int> GetIPoolables()
     {
         return new Dictionary<IPoolable, int>
         {
-            {differenceObject, 20}
+            { differenceObject, 20 },
+            { spriteObject, 8 }
         };
     }
 }
