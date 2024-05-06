@@ -6,6 +6,7 @@ namespace Utilities.Constants
     {
 
         public static float SpriteColliderSizeConstant = 1.2f;
+        public static float CorrectCheckImageAnimationTime = .3f;
 
     }
 }

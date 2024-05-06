@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class LevelData : ScriptableObject
 {
-    public Sprite background;
+    public SpriteData background;
     public List<DifferenceData> differences;
     public List<SpriteData> bothLevelSprites;
 }

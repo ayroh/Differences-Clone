@@ -116,6 +116,8 @@ namespace Pool
     {
         Difference,
         Particle,
-        Sprite
+        Sprite,
+        Image,
+        Button
     }
 }

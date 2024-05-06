@@ -19,7 +19,10 @@ public class LevelManager : MonoBehaviour
 
     private void CreateLevel(LevelData levelData)
     {
-        for(int i = 0;i < levelData.differences.Count;++i)
+        SpriteObject background1 = null, background2 = null;
+        factoryManager.FillSpriteObjectPair(background1, background2, levelData.background);
+
+        for (int i = 0;i < levelData.differences.Count;++i)
         {
             DifferenceObject difference1 = null, difference2 = null;
             factoryManager.FillDifferenceObjectPair(difference1, difference2, levelData.differences[i]);

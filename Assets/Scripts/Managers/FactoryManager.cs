@@ -11,13 +11,14 @@ namespace Factory
         [Header("Parents")]
         [SerializeField] private Transform image1Parent;
         [SerializeField] private Transform image2Parent;
+        [SerializeField] private RectTransform canvas;
 
 
         public void FillDifferenceObjectPair(DifferenceObject difference1, DifferenceObject difference2, DifferenceData differenceData)
         {
             if(differenceData.difference1.sprite == null && differenceData.difference2.sprite == null)
             {
-                Debug.LogError("FactoryManager: Fill, both difference sprites are null!");
+                Debug.LogError("FactoryManager: FillDifferenceObjectPair, both difference sprites are null!");
                 return;
             }
 
@@ -51,6 +52,11 @@ namespace Factory
 
         public void FillSpriteObjectPair(SpriteObject spriteObject1, SpriteObject spriteObject2, SpriteData spriteData)
         {
+            if (spriteData.sprite == null)
+            {
+                Debug.LogError("FactoryManager: FillSpriteObjectPair, sprite is null!");
+                return;
+            }
             spriteObject1 = (SpriteObject)PoolManager.instance.Get(PoolObjectType.Sprite, image1Parent);
             spriteObject1.SetSprite(spriteData.sprite, spriteData.orderInLayer);
             spriteObject1.transform.localPosition = spriteData.localPosition;
@@ -58,6 +64,21 @@ namespace Factory
             spriteObject2 = (SpriteObject)PoolManager.instance.Get(PoolObjectType.Sprite, image2Parent);
             spriteObject2.SetSprite(spriteData.sprite, spriteData.orderInLayer);
             spriteObject2.transform.localPosition = spriteData.localPosition;
+        }
+
+        public UIImageObject GetUIImageObject(Sprite image, Vector2 screenPos)
+        {
+            UIImageObject uiImageObject = (UIImageObject)PoolManager.instance.Get(PoolObjectType.Image, canvas);
+            uiImageObject.SetImage(image);
+            uiImageObject.transform.position = screenPos;
+            return uiImageObject;
+        }
+
+        public UIButtonObject GetCorrectCheckButton(Vector2 screenPos)
+        {
+            UIButtonObject uiButtonObject = (UIButtonObject)PoolManager.instance.Get(PoolObjectType.Button, canvas);
+            uiButtonObject.transform.position = screenPos;
+            return uiButtonObject;
         }
     }
 }

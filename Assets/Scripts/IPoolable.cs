@@ -6,7 +6,7 @@ namespace Pool
 {
     public interface IPoolable
     {
-        public PoolObjectType poolObjectType { get ; set; }
+        public abstract PoolObjectType poolObjectType { get; }
         void Initialize(Transform parent = null);
         void ResetObject(Transform parent = null);
 

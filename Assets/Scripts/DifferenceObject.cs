@@ -11,12 +11,7 @@ public class DifferenceObject : SpriteObject, IClickable, IPoolable
 
     private DifferenceObject pairDifferenceObject;
 
-    //public PoolObjectType poolObjectType { get; set; } = PoolObjectType.Difference;
-
-    private void Awake()
-    {
-        poolObjectType = PoolObjectType.Difference;
-    }
+    public override PoolObjectType poolObjectType { get => PoolObjectType.Difference; }
 
     public void Click()
     {
@@ -27,6 +22,7 @@ public class DifferenceObject : SpriteObject, IClickable, IPoolable
     public void Found()
     {
         boxCollider.enabled = false;
+        UIManager.instance.CreateCorrectCheckButton(transform.position);
     }
 
     public void SetPair(DifferenceObject pair) => pairDifferenceObject = pair;

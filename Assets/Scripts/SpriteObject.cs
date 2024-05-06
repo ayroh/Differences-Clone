@@ -7,7 +7,7 @@ public class SpriteObject : MonoBehaviour, IPoolable
 {
     [SerializeField] protected SpriteRenderer mainSpriteRenderer;
 
-    public PoolObjectType poolObjectType { get; set; } = PoolObjectType.Sprite;
+    public virtual PoolObjectType poolObjectType { get => PoolObjectType.Sprite; }
 
     public void Initialize(Transform parent = null)
     {
