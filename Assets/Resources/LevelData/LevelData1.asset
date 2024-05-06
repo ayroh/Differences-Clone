@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: LevelData1
   m_EditorClassIdentifier: 
   background: {fileID: 0}
-  differences: []
+  differences:
+  - difference1: {fileID: 21300000, guid: 01d98c92fab8b774ea836092c1f1f082, type: 3}
+    difference2: {fileID: 21300000, guid: a52070dbec21f584d814a4b8f16aa4ae, type: 3}
+    localPosition: {x: 0, y: 0}
+    orderInLayer: 1

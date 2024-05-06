@@ -1,18 +1,18 @@
+using Pool;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 
-public class FactoryManager : MonoBehaviour
+namespace Factory
 {
-    // Start is called before the first frame update
-    void Start()
+    public class FactoryManager : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public DifferenceObject GetDifferenceObject(Sprite sprite)
+        {
+            DifferenceObject differenceObject = (DifferenceObject)PoolManager.instance.Get(PoolObjectType.Difference);
+            differenceObject.SetSprite(sprite);
+            return differenceObject;
+        }
     }
 }
