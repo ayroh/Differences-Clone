@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities.Constants;
+using Utilities.Enums;
 using Utilities.Signals;
 
 public class LifeManager : MonoBehaviour
@@ -11,19 +12,13 @@ public class LifeManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform lifeParent;
 
-    private int maxLife = 3;
-
     private Stack<Life> lifes = new();
 
     public int NumberOfLives => lifes.Count;
 
-    private void Start()
-    {
-        CreateLifes(3);
-    }
+    private void StartGame() => CreateLifes(3); 
 
-
-    public async void CreateLifes(int numberOfLifes = 3)
+    private async void CreateLifes(int numberOfLifes)
     {
         if(numberOfLifes < 0)
         {
@@ -44,13 +39,6 @@ public class LifeManager : MonoBehaviour
                 await UniTask.NextFrame();
             }
         }
-
-        await UniTask.Delay(2000);
-        DecreaseLife();
-        await UniTask.Delay(2000);
-        DecreaseLife();
-        await UniTask.Delay(2000);
-        DecreaseLife();
     }
 
     private void DecreaseLife()
@@ -65,6 +53,14 @@ public class LifeManager : MonoBehaviour
     }
 
 
-    private void OnEnable() => Signals.OnFailClick += DecreaseLife;
-    private void OnDisable() => Signals.OnFailClick -= DecreaseLife;
+    private void OnEnable()
+    {
+        Signals.OnFailClick += DecreaseLife;
+        Signals.OnGameStart += StartGame;
+    }
+    private void OnDisable()
+    {
+        Signals.OnFailClick -= DecreaseLife;
+        Signals.OnGameStart -= StartGame;
+    }
 }

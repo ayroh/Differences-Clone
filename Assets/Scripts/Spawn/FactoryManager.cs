@@ -86,6 +86,12 @@ namespace Factory
             return newLife;
         }
 
+        public Score GetScore()
+        {
+            Score newScore = (Score)PoolManager.instance.Get(PoolObjectType.Score);
+            return newScore;
+        }
+
         //public UIImageObject GetUIImageObject(Sprite image, Vector2 screenPos)
         //{
         //    UIImageObject uiImageObject = (UIImageObject)PoolManager.instance.Get(PoolObjectType.Image, canvas);

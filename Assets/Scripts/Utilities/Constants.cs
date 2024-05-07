@@ -17,6 +17,11 @@ namespace Utilities.Constants
         public static string LifeKillLifeAnimationName = "KillLife";
         public static string LifeColorizeAnimationName = "Colorize";
 
+        // Score
+        public static string ScoreFoundAnimationName = "Found";
+        public static string ScoreColorizeAnimationName = "Colorize";
+
+
 
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using Pool;
 using Utilities.Constants;
 using Factory;
+using Utilities.Signals;
 
 public class DifferenceObject : SpriteObject, IClickable, IPoolable
 {
@@ -21,6 +22,7 @@ public class DifferenceObject : SpriteObject, IClickable, IPoolable
 
         CorrectCheck correctCheck1 = null, correctCheck2 = null;
         FactoryManager.instance.FillCorrectCheckPair(correctCheck1, correctCheck2, transform.position, pairDifferenceObject.transform.position);
+        Signals.OnFound?.Invoke();
     }
 
     public void Found()

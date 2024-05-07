@@ -8,7 +8,6 @@ public abstract class UIImageObject : MonoBehaviour
 {
     [SerializeField] protected Image mainImage;
 
-
     protected virtual void Awake() { }
 
     public virtual void Initialize(Transform parent = null)
