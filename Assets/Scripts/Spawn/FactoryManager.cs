@@ -2,6 +2,7 @@ using Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 namespace Factory
 {
@@ -77,6 +78,12 @@ namespace Factory
 
             correctCheck1.SetPair(correctCheck2);
             correctCheck2.SetPair(correctCheck1);
+        }
+
+        public Life GetLife()
+        {
+            Life newLife = (Life)PoolManager.instance.Get(PoolObjectType.Life);
+            return newLife;
         }
 
         //public UIImageObject GetUIImageObject(Sprite image, Vector2 screenPos)

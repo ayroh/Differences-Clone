@@ -24,7 +24,6 @@ public class CorrectCheck : SpriteObject, IClickable, IPoolable
 
         float timer = .001f;
         float scaleValue = .01f;
-
         while (timer < Constants.CorrectCheckImageAnimationTime)
         {
             scaleValue = timer / Constants.CorrectCheckImageAnimationTime;
@@ -52,7 +51,6 @@ public class CorrectCheck : SpriteObject, IClickable, IPoolable
         Vector2 endPos = (Vector2)transform.position + direction;
 
         float timer = 0f;
-
         while(timer < Constants.CorrectCheckClickShakeAnimationTime)
         {
             transform.position = Vector2.Lerp(startPos, endPos, shakeCurve.Evaluate(timer / Constants.CorrectCheckClickShakeAnimationTime));
@@ -61,7 +59,6 @@ public class CorrectCheck : SpriteObject, IClickable, IPoolable
         }
 
         transform.position = startPos;
-
         boxCollider.enabled = true;
     }
 
