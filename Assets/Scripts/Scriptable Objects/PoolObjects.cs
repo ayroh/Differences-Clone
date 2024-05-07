@@ -10,6 +10,7 @@ public class PoolObjects : ScriptableObject
     [SerializeField] private SpriteObject spriteObject;
     [SerializeField] private CorrectCheck correctCheck;
     [SerializeField] private Life life;
+    [SerializeField] private Score score;
 
     public Dictionary<IPoolable, int> GetIPoolables()
     {
@@ -18,7 +19,8 @@ public class PoolObjects : ScriptableObject
             { differenceObject, 20 },
             { spriteObject, 8 },
             { correctCheck, 20 },
-            { life, 3 }
+            { life, 3 },
+            { score, 10 },
         };
     }
 }
