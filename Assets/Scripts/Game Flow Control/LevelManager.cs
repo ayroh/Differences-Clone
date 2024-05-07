@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private FactoryManager factoryManager;
 
 
-    void Start()
+    private void StartGame()
     {
         CreateLevel(allLevels.levels[0]);
     }
@@ -35,4 +35,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+
+    private void OnEnable() => Signals.OnGameStart += StartGame;
+    private void OnDisable() => Signals.OnGameStart -= StartGame;
 }

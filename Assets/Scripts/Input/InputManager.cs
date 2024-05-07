@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Utilities.Enums;
 using Utilities.Signals;
 
@@ -33,7 +34,7 @@ public class InputManager : MonoBehaviour
         if (inputCount != 0 || GameManager.gameState != GameState.Play)
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics2D.RaycastNonAlloc(ray.origin, ray.direction, hit, 100f, clickableLayers) != 0)

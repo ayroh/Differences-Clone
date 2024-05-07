@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using Pool;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -38,6 +40,19 @@ public class GameManager : MonoBehaviour
         Signals.OnGameStateChanged?.Invoke(gameState);
     }
 
+    public async void RestartGame()
+    {
+        await UniTask.Delay(500);
+        PoolManager.instance.ResetPool(PoolObjectType.CorrectCheck);
+        PoolManager.instance.ResetPool(PoolObjectType.Difference);
+        PoolManager.instance.ResetPool(PoolObjectType.Sprite);
+
+        await UniTask.Delay(1500);
+
+        SetGameState(GameState.Play);
+        Signals.OnGameStart?.Invoke();
+    }
+
     private void WinGame()
     {
         SetGameState(GameState.Success);
@@ -52,11 +67,13 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        Signals.OnRestartGame += RestartGame;
         Signals.OnLifeEnded += LoseGame;
         Signals.OnScoreFinished += WinGame;
     }
     private void OnDisable()
     {
+        Signals.OnRestartGame -= RestartGame;
         Signals.OnLifeEnded -= LoseGame;
         Signals.OnScoreFinished -= WinGame;
     }

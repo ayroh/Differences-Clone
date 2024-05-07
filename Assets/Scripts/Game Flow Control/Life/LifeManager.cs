@@ -16,15 +16,10 @@ public class LifeManager : MonoBehaviour
     private List<Life> lifes = new();
 
     private int currentLife = -1;
+    private int maxLife = 3;
     public int NumberOfLives => lifes.Count;
 
-    private void StartGame() => CreateLifes(3);
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            CreateLifes(2);
-    }
+    private void StartGame() => CreateLifes(maxLife - (currentLife + 1));
 
     public async UniTask ReviveLifes(int numberOfLifes)
     {

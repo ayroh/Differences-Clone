@@ -24,5 +24,7 @@ namespace Utilities.Signals
         public static Action OnScoreFinished = delegate { };
 
         public static Action OnFound = delegate { };
+
+        public static Action OnRestartGame = delegate { };
     }
 }

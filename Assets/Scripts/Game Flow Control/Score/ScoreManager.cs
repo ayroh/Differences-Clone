@@ -2,6 +2,8 @@ using Cysharp.Threading.Tasks;
 using Factory;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Utilities.Constants;
 using Utilities.Signals;
@@ -13,17 +15,16 @@ public class ScoreManager : MonoBehaviour
 
     private List<Score> scores = new();
 
+    private int maxScore = 10;
     private int currentScore = 0;
 
-    private void StartGame() => CreateScores(10);
-
-    private void Update()
+    private async void StartGame()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            CleanScores();
+        await CleanScores();
+        CreateScores(maxScore - scores.Count);
     }
 
-    public async void CleanScores()
+    public async UniTask CleanScores()
     {
         for (int i = currentScore - 1;i >= 0;i--)
         {
@@ -41,6 +42,9 @@ public class ScoreManager : MonoBehaviour
 
     private async void CreateScores(int numberOfScores)
     {
+        if (scores.Count >= numberOfScores)
+            return;
+
         if (numberOfScores < 0)
         {
             Debug.LogError("LifeManager: CreateLifes, number of lives is below zero!");
@@ -61,6 +65,7 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
+
 
     private void IncreaseScore()
     {
