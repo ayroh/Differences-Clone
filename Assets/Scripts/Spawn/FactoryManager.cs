@@ -1,12 +1,11 @@
 using Pool;
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Schema;
 using UnityEngine;
 
 namespace Factory
 {
-    public class FactoryManager : MonoBehaviour
+    public class FactoryManager : Singleton<FactoryManager>
     {
         [Header("Parents")]
         [SerializeField] private Transform image1Parent;
@@ -66,19 +65,27 @@ namespace Factory
             spriteObject2.transform.localPosition = spriteData.localPosition;
         }
 
-        public UIImageObject GetUIImageObject(Sprite image, Vector2 screenPos)
+        public void FillCorrectCheckPair(CorrectCheck correctCheck1, CorrectCheck correctCheck2, Vector2 pos1, Vector2 pos2)
         {
-            UIImageObject uiImageObject = (UIImageObject)PoolManager.instance.Get(PoolObjectType.Image, canvas);
-            uiImageObject.SetImage(image);
-            uiImageObject.transform.position = screenPos;
-            return uiImageObject;
+            correctCheck1 = (CorrectCheck)PoolManager.instance.Get(PoolObjectType.CorrectCheck, image1Parent);
+            correctCheck1.transform.position = pos1;
+            correctCheck1.GrowFromZero();
+            
+            correctCheck2 = (CorrectCheck)PoolManager.instance.Get(PoolObjectType.CorrectCheck, image2Parent);
+            correctCheck2.transform.position = pos2;
+            correctCheck2.GrowFromZero();
+
+            correctCheck1.SetPair(correctCheck2);
+            correctCheck2.SetPair(correctCheck1);
         }
 
-        public UIButtonObject GetCorrectCheckButton(Vector2 screenPos)
-        {
-            UIButtonObject uiButtonObject = (UIButtonObject)PoolManager.instance.Get(PoolObjectType.Button, canvas);
-            uiButtonObject.transform.position = screenPos;
-            return uiButtonObject;
-        }
+        //public UIImageObject GetUIImageObject(Sprite image, Vector2 screenPos)
+        //{
+        //    UIImageObject uiImageObject = (UIImageObject)PoolManager.instance.Get(PoolObjectType.Image, canvas);
+        //    uiImageObject.SetImage(image);
+        //    uiImageObject.transform.position = screenPos;
+        //    return uiImageObject;
+        //}
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pool;
 using Utilities.Constants;
+using Factory;
 
 public class DifferenceObject : SpriteObject, IClickable, IPoolable
 {
@@ -17,12 +18,15 @@ public class DifferenceObject : SpriteObject, IClickable, IPoolable
     {
         Found();
         pairDifferenceObject.Found();
+
+        CorrectCheck correctCheck1 = null, correctCheck2 = null;
+        FactoryManager.instance.FillCorrectCheckPair(correctCheck1, correctCheck2, transform.position, pairDifferenceObject.transform.position);
     }
 
     public void Found()
     {
         boxCollider.enabled = false;
-        UIManager.instance.CreateCorrectCheckButton(transform.position);
+        //UIManager.instance.CreateCorrectCheckButton(transform.position);
     }
 
     public void SetPair(DifferenceObject pair) => pairDifferenceObject = pair;

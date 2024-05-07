@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   differenceObject: {fileID: 4974993002371671302, guid: 1cd7387c4b963fe4882afae0cccf04e7, type: 3}
   spriteObject: {fileID: 4470385407307062239, guid: 975fdd9308ca73b40aa245911698e4ce, type: 3}
-  uiButtonObject: {fileID: 5057869951922391939, guid: fe48aac2be2308f4eb33a42e54743859, type: 3}
+  correctCheck: {fileID: 5239252811977758515, guid: a3b7f89d767d49c4db060b2c6e800543, type: 3}

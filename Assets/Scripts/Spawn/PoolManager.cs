@@ -117,7 +117,8 @@ namespace Pool
         Difference,
         Particle,
         Sprite,
-        Image,
-        Button
+        CorrectCheck,
+        Life,
+        Score
     }
 }

@@ -8,7 +8,7 @@ public class PoolObjects : ScriptableObject
 {
     [SerializeField] private DifferenceObject differenceObject;
     [SerializeField] private SpriteObject spriteObject;
-    [SerializeField] private UIButtonObject uiButtonObject;
+    [SerializeField] private CorrectCheck correctCheck;
 
     public Dictionary<IPoolable, int> GetIPoolables()
     {
@@ -16,7 +16,7 @@ public class PoolObjects : ScriptableObject
         {
             { differenceObject, 20 },
             { spriteObject, 8 },
-            { uiButtonObject, 20 }
+            { correctCheck, 20 }
         };
     }
 }

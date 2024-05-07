@@ -13,6 +13,10 @@ namespace Utilities.Signals
 
         public static Action<GameState> OnGameStateChanged = delegate { };
 
+        public static Action OnDifferenceFound = delegate { };
 
+        public static Action OnFailClick = delegate { };
+
+        public static Action OnLifeEnded = delegate { };
     }
 }

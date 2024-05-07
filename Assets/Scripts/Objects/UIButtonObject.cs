@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIButtonObject : UIImageObject, IPoolable
+public abstract class UIButtonObject : UIImageObject
 {
     [SerializeField] private Button button;
 
-    public override PoolObjectType poolObjectType { get => PoolObjectType.Button; }
-
+    protected override void Awake() { }
 
     public void SetButtonActive(bool choice) => button.enabled = choice;
 

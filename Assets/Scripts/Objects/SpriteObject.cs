@@ -9,7 +9,7 @@ public class SpriteObject : MonoBehaviour, IPoolable
 
     public virtual PoolObjectType poolObjectType { get => PoolObjectType.Sprite; }
 
-    public void Initialize(Transform parent = null)
+    public virtual void Initialize(Transform parent = null)
     {
         transform.SetParent(parent);
         transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
@@ -17,7 +17,7 @@ public class SpriteObject : MonoBehaviour, IPoolable
         gameObject.SetActive(true);
     }
 
-    public void ResetObject(Transform parent = null)
+    public virtual void ResetObject(Transform parent = null)
     {
         SetSprite(null);
         transform.SetParent(parent);
