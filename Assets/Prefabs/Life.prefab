@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainImage: {fileID: 7105171345099211583}
   backgroundImage: {fileID: 1051816624847790077}
-  animation: {fileID: 3344863033898124311}
+  lifeAnimation: {fileID: 3344863033898124311}
 --- !u!111 &3344863033898124311
 Animation:
   m_ObjectHideFlags: 0

@@ -10,13 +10,13 @@ public class Life : UIImageObject, IPoolable
 {
     [Header("References")]
     [SerializeField] private Image backgroundImage;
-    [SerializeField] private new Animation animation;
+    [SerializeField] private Animation lifeAnimation;
 
     public PoolObjectType poolObjectType { get => PoolObjectType.Life; }
 
-    public void KillInsideImageAnimation() => animation.Play("KillLife");
+    public void KillInsideImageAnimation() => lifeAnimation.Play(Constants.LifeKillLifeAnimationName);
 
-    private void ColorizeAnimation() => animation.Play("Colorize");
+    private void ColorizeAnimation() => lifeAnimation.Play(Constants.LifeColorizeAnimationName);
 
     public override void Initialize(Transform parent = null)
     {
@@ -29,6 +29,7 @@ public class Life : UIImageObject, IPoolable
 
     public override void ResetObject(Transform parent = null)
     {
+        //transform.SetParent(parent);
         gameObject.SetActive(false);
     }
 }

@@ -14,6 +14,8 @@ namespace Utilities.Constants
         // Life
         public static float LifeTimeBetweenCreation = .1f;
         public static float LifeTimeCreationAnimationTime = 1f;
+        public static string LifeKillLifeAnimationName = "KillLife";
+        public static string LifeColorizeAnimationName = "Colorize";
 
 
     }

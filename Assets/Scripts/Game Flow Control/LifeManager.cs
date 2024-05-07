@@ -11,10 +11,11 @@ public class LifeManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform lifeParent;
 
-    private int currentLife = 0;
     private int maxLife = 3;
 
     private Stack<Life> lifes = new();
+
+    public int NumberOfLives => lifes.Count;
 
     private void Start()
     {
@@ -32,10 +33,11 @@ public class LifeManager : MonoBehaviour
 
         for(int i = 0;i < numberOfLifes;i++)
         {
-            float timer = 0f;
             Life newLife = FactoryManager.instance.GetLife();
             newLife.transform.SetParent(lifeParent);
             lifes.Push(newLife);
+
+            float timer = 0f;
             while(timer < Constants.LifeTimeBetweenCreation)
             {
                 timer += Time.deltaTime;
@@ -43,15 +45,22 @@ public class LifeManager : MonoBehaviour
             }
         }
 
-        currentLife = numberOfLifes - 1;
+        await UniTask.Delay(2000);
+        DecreaseLife();
+        await UniTask.Delay(2000);
+        DecreaseLife();
+        await UniTask.Delay(2000);
+        DecreaseLife();
     }
 
     private void DecreaseLife()
     {
-        if (currentLife == 0)
+        if (NumberOfLives == 0)
             return;
 
-        if(--currentLife == 0)
+        lifes.Pop().KillInsideImageAnimation();
+
+        if(NumberOfLives == 0)
             Signals.OnLifeEnded?.Invoke();
     }
 
