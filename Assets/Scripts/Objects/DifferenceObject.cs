@@ -28,7 +28,6 @@ public class DifferenceObject : SpriteObject, IClickable, IPoolable
     public void Found()
     {
         boxCollider.enabled = false;
-        //UIManager.instance.CreateCorrectCheckButton(transform.position);
     }
 
     public void SetPair(DifferenceObject pair) => pairDifferenceObject = pair;

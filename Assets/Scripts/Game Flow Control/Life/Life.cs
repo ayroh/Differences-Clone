@@ -14,9 +14,7 @@ public class Life : UIImageObject, IPoolable
 
     public PoolObjectType poolObjectType { get => PoolObjectType.Life; }
 
-    public void KillInsideImageAnimation() => lifeAnimation.Play(Constants.LifeKillLifeAnimationName);
-
-    private void ColorizeAnimation() => lifeAnimation.Play(Constants.LifeColorizeAnimationName);
+    public void PlayAnimation(string animationName) => lifeAnimation.Play(animationName);
 
     public override void Initialize(Transform parent = null)
     {
@@ -24,12 +22,11 @@ public class Life : UIImageObject, IPoolable
         transform.localScale = Vector3.one;
         gameObject.SetActive(true);
         mainImage.gameObject.SetActive(true);
-        ColorizeAnimation();
+        PlayAnimation(Constants.LifeColorizeAnimationName);
     }
 
     public override void ResetObject(Transform parent = null)
     {
-        //transform.SetParent(parent);
         gameObject.SetActive(false);
     }
 }

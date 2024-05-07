@@ -16,35 +16,51 @@ public class CorrectCheck : SpriteObject, IClickable, IPoolable
 
     public override PoolObjectType poolObjectType { get => PoolObjectType.CorrectCheck; }
 
+    private bool isShaking = false;
     private CorrectCheck pairCorrectCheck;
 
-    public async void GrowFromZero()
+    public async void GrowFromZero(float finalScale = 1)
     {
+        if(finalScale <= 0f)
+        {
+            Debug.LogError("CorrectCheck: GrowFromZero, final scale is below zero!");
+            return;
+        }
+
         boxCollider.enabled = false;
 
         float timer = .001f;
         float scaleValue = .01f;
         while (timer < Constants.CorrectCheckImageAnimationTime)
         {
-            scaleValue = timer / Constants.CorrectCheckImageAnimationTime;
+            scaleValue = (timer / Constants.CorrectCheckImageAnimationTime) * finalScale;
             transform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
             timer += Time.deltaTime;
             await UniTask.NextFrame();
         }
 
-        transform.localScale = Vector3.one;
+        transform.localScale = new Vector3(finalScale, finalScale, finalScale);
         boxCollider.enabled = true;
     }
 
     public void Click()
     {
+        if(pairCorrectCheck == null)
+        {
+            Debug.LogError("CorrectCheck: Click, pair CorrectCheck is null!");
+            return;
+        }
+
         Shake();
         pairCorrectCheck.Shake();
     }
 
     private async void Shake()
     {
-        boxCollider.enabled = false;
+        if (isShaking)
+            return;
+
+        isShaking = true;
 
         Vector2 direction = new Vector2(Extentions.RandomWithNegativeChance(.1f, .2f), Extentions.RandomWithNegativeChance(.1f, .2f));
         Vector2 startPos = transform.position;
@@ -57,9 +73,9 @@ public class CorrectCheck : SpriteObject, IClickable, IPoolable
             timer += Time.deltaTime;
             await UniTask.NextFrame();
         }
-
         transform.position = startPos;
-        boxCollider.enabled = true;
+
+        isShaking = false;
     }
 
     public override void ResetObject(Transform parent = null)

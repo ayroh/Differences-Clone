@@ -16,10 +16,13 @@ namespace Utilities.Constants
         public static float LifeTimeCreationAnimationTime = 1f;
         public static string LifeKillLifeAnimationName = "KillLife";
         public static string LifeColorizeAnimationName = "Colorize";
+        public static string LifeReviveLifeAnimationName = "ReviveLife";
 
         // Score
+        public static float ScoreTimeBetweenCreation = .07f;
         public static string ScoreFoundAnimationName = "Found";
         public static string ScoreColorizeAnimationName = "Colorize";
+        public static string ScoreCleanAnimationName = "Clean";
 
 
 

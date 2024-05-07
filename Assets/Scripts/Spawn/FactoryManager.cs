@@ -68,13 +68,15 @@ namespace Factory
 
         public void FillCorrectCheckPair(CorrectCheck correctCheck1, CorrectCheck correctCheck2, Vector2 pos1, Vector2 pos2)
         {
+            float noisedScale = Extentions.Noise(1, .15f);
+
             correctCheck1 = (CorrectCheck)PoolManager.instance.Get(PoolObjectType.CorrectCheck, image1Parent);
             correctCheck1.transform.position = pos1;
-            correctCheck1.GrowFromZero();
+            correctCheck1.GrowFromZero(noisedScale);
             
             correctCheck2 = (CorrectCheck)PoolManager.instance.Get(PoolObjectType.CorrectCheck, image2Parent);
             correctCheck2.transform.position = pos2;
-            correctCheck2.GrowFromZero();
+            correctCheck2.GrowFromZero(noisedScale);
 
             correctCheck1.SetPair(correctCheck2);
             correctCheck2.SetPair(correctCheck1);
@@ -91,14 +93,6 @@ namespace Factory
             Score newScore = (Score)PoolManager.instance.Get(PoolObjectType.Score);
             return newScore;
         }
-
-        //public UIImageObject GetUIImageObject(Sprite image, Vector2 screenPos)
-        //{
-        //    UIImageObject uiImageObject = (UIImageObject)PoolManager.instance.Get(PoolObjectType.Image, canvas);
-        //    uiImageObject.SetImage(image);
-        //    uiImageObject.transform.position = screenPos;
-        //    return uiImageObject;
-        //}
 
     }
 }

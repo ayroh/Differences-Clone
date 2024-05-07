@@ -17,6 +17,28 @@ public class ScoreManager : MonoBehaviour
 
     private void StartGame() => CreateScores(10);
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            CleanScores();
+    }
+
+    public async void CleanScores()
+    {
+        for (int i = currentScore - 1;i >= 0;i--)
+        {
+            scores[i].PlayAnimation(Constants.ScoreCleanAnimationName);
+            currentScore--;
+
+            float timer = 0f;
+            while (timer < Constants.ScoreTimeBetweenCreation)
+            {
+                timer += Time.deltaTime;
+                await UniTask.NextFrame();
+            }
+        }
+    }
+
     private async void CreateScores(int numberOfScores)
     {
         if (numberOfScores < 0)
@@ -32,7 +54,7 @@ public class ScoreManager : MonoBehaviour
             scores.Add(newScore);
 
             float timer = 0f;
-            while (timer < Constants.LifeTimeBetweenCreation)
+            while (timer < Constants.ScoreTimeBetweenCreation)
             {
                 timer += Time.deltaTime;
                 await UniTask.NextFrame();
@@ -45,7 +67,7 @@ public class ScoreManager : MonoBehaviour
         if (currentScore == 10)
             return;
 
-        scores[currentScore++].FoundAnimation();
+        scores[currentScore++].PlayAnimation(Constants.ScoreFoundAnimationName);
 
         if (currentScore == 10)
             Signals.OnScoreFinished?.Invoke();

@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Factory;
+using Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,35 @@ public class LifeManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform lifeParent;
 
-    private Stack<Life> lifes = new();
+    private List<Life> lifes = new();
 
+    private int currentLife = -1;
     public int NumberOfLives => lifes.Count;
 
-    private void StartGame() => CreateLifes(3); 
+    private void StartGame() => CreateLifes(3);
+
+    public async void ReviveLifes(int numberOfLifes)
+    {
+        if (numberOfLifes < 0)
+        {
+            Debug.LogError("LifeManager: ReviveLifes, number of lives is below zero!");
+            return;
+        }
+
+        int count = Mathf.Min(numberOfLifes, lifes.Count - (currentLife + 1));
+        for (int i = 0;i < count;i++)
+        {
+            currentLife++;
+            lifes[currentLife].PlayAnimation(Constants.LifeReviveLifeAnimationName);
+
+            float timer = 0f;
+            while (timer < Constants.LifeTimeBetweenCreation)
+            {
+                timer += Time.deltaTime;
+                await UniTask.NextFrame();
+            }
+        }
+    }
 
     private async void CreateLifes(int numberOfLifes)
     {
@@ -30,7 +55,7 @@ public class LifeManager : MonoBehaviour
         {
             Life newLife = FactoryManager.instance.GetLife();
             newLife.transform.SetParent(lifeParent);
-            lifes.Push(newLife);
+            lifes.Add(newLife);
 
             float timer = 0f;
             while(timer < Constants.LifeTimeBetweenCreation)
@@ -38,6 +63,7 @@ public class LifeManager : MonoBehaviour
                 timer += Time.deltaTime;
                 await UniTask.NextFrame();
             }
+            currentLife++;
         }
     }
 
@@ -46,9 +72,9 @@ public class LifeManager : MonoBehaviour
         if (NumberOfLives == 0)
             return;
 
-        lifes.Pop().KillInsideImageAnimation();
+        lifes[currentLife].PlayAnimation(Constants.LifeKillLifeAnimationName);
 
-        if(NumberOfLives == 0)
+        if(--currentLife == -1)
             Signals.OnLifeEnded?.Invoke();
     }
 

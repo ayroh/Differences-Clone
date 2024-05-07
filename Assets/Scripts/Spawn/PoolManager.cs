@@ -65,23 +65,28 @@ namespace Pool
             pool.Push(poolObject);
         }
 
-        //public void ResetPools()
-        //{
-        //    foreach (var poolTypeToPoolItem in poolTypeTpPoolItemDictionary)
-        //    {
-        //        poolTypeToPoolItem.Value.ResetObject();
-        //    }
-        //}
+        public void ResetPools()
+        {
+            foreach (var poolObjectType in poolTypeTpPoolItemDictionary)
+            {
+                ResetPool(poolObjectType.Key);
+            }
+        }
+
+        public void ResetPool(PoolObjectType poolObjectType)
+        {
+            poolTypeTpPoolItemDictionary[poolObjectType].Reset();
+        }
     }
 
     public class Pool
     {
         private readonly Stack<IPoolable> pooledObjects = new Stack<IPoolable>();
-        //private readonly HashSet<IPoolable> activeObjects = new HashSet<IPoolable>();
+        private readonly List<IPoolable> activeObjects = new List<IPoolable>();
         private readonly IPoolable prefab;
 
         private int PooledObjectCount => pooledObjects.Count;
-        //private int ActiveObjectCount => activeObjects.Count;
+        private int ActiveObjectCount => activeObjects.Count;
 
         public Pool(IPoolable prefab)
         {
@@ -91,25 +96,28 @@ namespace Pool
         public IPoolable Pop()
         {
             IPoolable poolObject = PooledObjectCount > 0 ? pooledObjects.Pop() : (IPoolable)GameObject.Instantiate((UnityEngine.Object)prefab);
-            //activeObjects.Add(poolObject);
-            //pooledObjects.Push(poolObject);
-            //ResetPoolObject(poolObject);
+            activeObjects.Add(poolObject);
             return poolObject;
         }
 
         public void Push(IPoolable poolObject)
         {
             pooledObjects.Push(poolObject);
+            activeObjects.Remove(poolObject);
         }
 
 
-        //public void Reset()
-        //{
-        //    foreach (var activeObject in activeObjects)
-        //    {
-        //        activeObject.ResetObject();
-        //    }
-        //}
+        public void Reset()
+        {
+            int count = ActiveObjectCount;
+            for(int i = count - 1;i >= 0;--i)
+            {
+                activeObjects[i].ResetObject();
+                pooledObjects.Push(activeObjects[i]);
+                activeObjects.Remove(activeObjects[i]);
+            }
+            activeObjects.Clear();
+        }
     }
 
     public enum PoolObjectType

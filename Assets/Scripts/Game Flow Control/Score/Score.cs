@@ -12,9 +12,7 @@ public class Score : UIImageObject, IPoolable
 
     public virtual PoolObjectType poolObjectType { get => PoolObjectType.Score; }
 
-    public void FoundAnimation() => scoreAnimation.Play(Constants.ScoreFoundAnimationName);
-
-    private void ColorizeAnimation() => scoreAnimation.Play(Constants.ScoreColorizeAnimationName);
+    public void PlayAnimation(string animationName) => scoreAnimation.Play(animationName);
 
     public override void Initialize(Transform parent = null)
     {
@@ -22,12 +20,11 @@ public class Score : UIImageObject, IPoolable
         transform.localScale = Vector3.one;
         gameObject.SetActive(true);
         mainImage.gameObject.SetActive(true);
-        ColorizeAnimation();
+        PlayAnimation(Constants.ScoreColorizeAnimationName);
     }
 
     public override void ResetObject(Transform parent = null)
     {
-        //transform.SetParent(parent);
         gameObject.SetActive(false);
     }
 

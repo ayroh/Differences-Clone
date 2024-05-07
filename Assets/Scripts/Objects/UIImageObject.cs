@@ -18,6 +18,7 @@ public abstract class UIImageObject : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+
     public virtual void ResetObject(Transform parent = null)
     {
         SetImage(null);

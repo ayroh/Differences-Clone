@@ -66,6 +66,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: e47e5232dfbe7464ab6875fb04c20ce9, type: 2}
   - {fileID: 7400000, guid: ad5fa8971527f2042bd26b2443a4eba9, type: 2}
+  - {fileID: 7400000, guid: a3a958fee69530d4cb65ad9a3eb437e3, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
