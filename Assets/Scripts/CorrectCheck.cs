@@ -47,9 +47,9 @@ public class CorrectCheck : SpriteObject, IClickable, IPoolable
     {
         boxCollider.enabled = false;
 
-        Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        Vector2 direction = new Vector2(Extentions.RandomWithNegativeChance(.1f, .2f), Extentions.RandomWithNegativeChance(.1f, .2f));
         Vector2 startPos = transform.position;
-        Vector2 endPos = (Vector2)transform.position + direction * Constants.CorrectCheckClickShakeConstant;
+        Vector2 endPos = (Vector2)transform.position + direction;
 
         float timer = 0f;
 
@@ -60,7 +60,7 @@ public class CorrectCheck : SpriteObject, IClickable, IPoolable
             await UniTask.NextFrame();
         }
 
-        transform.position = endPos;
+        transform.position = startPos;
 
         boxCollider.enabled = true;
     }

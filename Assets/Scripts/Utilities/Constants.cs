@@ -10,7 +10,6 @@ namespace Utilities.Constants
         // CorrectCheck
         public static float CorrectCheckImageAnimationTime = .3f;
         public static float CorrectCheckClickShakeAnimationTime = .5f;
-        public static float CorrectCheckClickShakeConstant = .5f;
 
     }
 }
