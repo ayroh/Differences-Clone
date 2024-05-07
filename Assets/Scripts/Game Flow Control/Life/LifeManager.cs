@@ -72,6 +72,8 @@ public class LifeManager : MonoBehaviour
         }
     }
 
+    private void RefillLifes() => _ = ReviveLifes(maxLife);
+
     private void DecreaseLife()
     {
         if (NumberOfLives == 0)
@@ -86,11 +88,13 @@ public class LifeManager : MonoBehaviour
 
     private void OnEnable()
     {
+        Signals.OnRefillLifes += RefillLifes;
         Signals.OnFailClick += DecreaseLife;
         Signals.OnGameStart += StartGame;
     }
     private void OnDisable()
     {
+        Signals.OnRefillLifes -= RefillLifes;
         Signals.OnFailClick -= DecreaseLife;
         Signals.OnGameStart -= StartGame;
     }

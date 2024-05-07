@@ -26,5 +26,7 @@ namespace Utilities.Signals
         public static Action OnFound = delegate { };
 
         public static Action OnRestartGame = delegate { };
+
+        public static Action OnRefillLifes = delegate { };
     }
 }

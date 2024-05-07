@@ -42,12 +42,12 @@ public class GameManager : MonoBehaviour
 
     public async void RestartGame()
     {
-        await UniTask.Delay(500);
+        await UniTask.Delay(250);
         PoolManager.instance.ResetPool(PoolObjectType.CorrectCheck);
         PoolManager.instance.ResetPool(PoolObjectType.Difference);
         PoolManager.instance.ResetPool(PoolObjectType.Sprite);
 
-        await UniTask.Delay(1500);
+        await UniTask.Delay(750);
 
         SetGameState(GameState.Play);
         Signals.OnGameStart?.Invoke();
