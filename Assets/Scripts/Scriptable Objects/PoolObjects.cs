@@ -11,6 +11,7 @@ public class PoolObjects : ScriptableObject
     [SerializeField] private CorrectCheck correctCheck;
     [SerializeField] private Life life;
     [SerializeField] private Score score;
+    [SerializeField] private BackgroundObject backgroundObject;
 
     public Dictionary<IPoolable, int> GetIPoolables()
     {
@@ -21,6 +22,7 @@ public class PoolObjects : ScriptableObject
             { correctCheck, 20 },
             { life, 3 },
             { score, 10 },
+            { backgroundObject, 2}
         };
     }
 }

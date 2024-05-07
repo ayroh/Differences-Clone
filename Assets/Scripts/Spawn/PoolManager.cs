@@ -127,6 +127,7 @@ namespace Pool
         Sprite,
         CorrectCheck,
         Life,
-        Score
+        Score,
+        Background
     }
 }

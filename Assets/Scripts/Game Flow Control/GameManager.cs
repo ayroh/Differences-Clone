@@ -13,29 +13,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartGame();
+    }
+
+    private void StartGame()
+    {
         SetGameState(GameState.Play);
         Signals.OnGameStart?.Invoke();
     }
 
     public void SetGameState(GameState newGameState)
     {
-        switch (gameState)
-        {
-            case GameState.Play:
-                break;
-            case GameState.Pause:
-                break;
-        }
+        //switch (gameState) { }
 
         gameState = newGameState;
 
-        switch (newGameState)
-        {
-            case GameState.Play:
-                break;
-            case GameState.Pause:
-                break;
-        }
+        //switch (newGameState) { }
 
         Signals.OnGameStateChanged?.Invoke(gameState);
     }
@@ -46,11 +39,11 @@ public class GameManager : MonoBehaviour
         PoolManager.instance.ResetPool(PoolObjectType.CorrectCheck);
         PoolManager.instance.ResetPool(PoolObjectType.Difference);
         PoolManager.instance.ResetPool(PoolObjectType.Sprite);
+        PoolManager.instance.ResetPool(PoolObjectType.Background);
 
-        await UniTask.Delay(750);
+        await UniTask.Delay(500);
 
-        SetGameState(GameState.Play);
-        Signals.OnGameStart?.Invoke();
+        StartGame();
     }
 
     private void WinGame()

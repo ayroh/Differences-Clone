@@ -14,7 +14,7 @@ namespace Factory
         [SerializeField] private RectTransform canvas;
 
 
-        public void FillDifferenceObjectPair(DifferenceObject difference1, DifferenceObject difference2, DifferenceData differenceData)
+        public void FillDifferenceObjectPair(DifferenceData differenceData)
         {
             if(differenceData.difference1.sprite == null && differenceData.difference2.sprite == null)
             {
@@ -22,7 +22,7 @@ namespace Factory
                 return;
             }
 
-            difference1 = (DifferenceObject)PoolManager.instance.Get(PoolObjectType.Difference, image1Parent);
+            DifferenceObject difference1 = (DifferenceObject)PoolManager.instance.Get(PoolObjectType.Difference, image1Parent);
             if(differenceData.difference1.sprite != null)
             {
                 difference1.SetSprite(differenceData.difference1.sprite, differenceData.difference1.orderInLayer);
@@ -34,7 +34,7 @@ namespace Factory
                 difference1.transform.localPosition = differenceData.difference2.localPosition;
             }
 
-            difference2 = (DifferenceObject)PoolManager.instance.Get(PoolObjectType.Difference, image2Parent);
+            DifferenceObject difference2 = (DifferenceObject)PoolManager.instance.Get(PoolObjectType.Difference, image2Parent);
             if (differenceData.difference2.sprite != null)
             {
                 difference2.SetSprite(differenceData.difference2.sprite, differenceData.difference2.orderInLayer);
@@ -50,31 +50,31 @@ namespace Factory
             difference2.SetPair(difference1);
         }
 
-        public void FillSpriteObjectPair(SpriteObject spriteObject1, SpriteObject spriteObject2, SpriteData spriteData)
+        public void FillSpriteObjectPair(SpriteData spriteData)
         {
             if (spriteData.sprite == null)
             {
                 Debug.LogError("FactoryManager: FillSpriteObjectPair, sprite is null!");
                 return;
             }
-            spriteObject1 = (SpriteObject)PoolManager.instance.Get(PoolObjectType.Sprite, image1Parent);
+            SpriteObject spriteObject1 = (SpriteObject)PoolManager.instance.Get(PoolObjectType.Sprite, image1Parent);
             spriteObject1.SetSprite(spriteData.sprite, spriteData.orderInLayer);
             spriteObject1.transform.localPosition = spriteData.localPosition;
 
-            spriteObject2 = (SpriteObject)PoolManager.instance.Get(PoolObjectType.Sprite, image2Parent);
+            SpriteObject spriteObject2 = (SpriteObject)PoolManager.instance.Get(PoolObjectType.Sprite, image2Parent);
             spriteObject2.SetSprite(spriteData.sprite, spriteData.orderInLayer);
             spriteObject2.transform.localPosition = spriteData.localPosition;
         }
 
-        public void FillCorrectCheckPair(CorrectCheck correctCheck1, CorrectCheck correctCheck2, Vector2 pos1, Vector2 pos2)
+        public void FillCorrectCheckPair(Vector2 pos1, Vector2 pos2)
         {
             float noisedScale = Extentions.Noise(1, .15f);
 
-            correctCheck1 = (CorrectCheck)PoolManager.instance.Get(PoolObjectType.CorrectCheck, image1Parent);
+            CorrectCheck correctCheck1 = (CorrectCheck)PoolManager.instance.Get(PoolObjectType.CorrectCheck, image1Parent);
             correctCheck1.transform.position = pos1;
             correctCheck1.GrowFromZero(noisedScale);
-            
-            correctCheck2 = (CorrectCheck)PoolManager.instance.Get(PoolObjectType.CorrectCheck, image2Parent);
+
+            CorrectCheck correctCheck2 = (CorrectCheck)PoolManager.instance.Get(PoolObjectType.CorrectCheck, image2Parent);
             correctCheck2.transform.position = pos2;
             correctCheck2.GrowFromZero(noisedScale);
 
@@ -92,6 +92,17 @@ namespace Factory
         {
             Score newScore = (Score)PoolManager.instance.Get(PoolObjectType.Score);
             return newScore;
+        }
+
+        public void CreateBackgrounds(SpriteData spriteData)
+        {
+            BackgroundObject backgroundObject1 = (BackgroundObject)PoolManager.instance.Get(PoolObjectType.Background, image1Parent);
+            backgroundObject1.transform.localPosition = Vector3.zero;
+            backgroundObject1.SetSprite(spriteData.sprite, spriteData.orderInLayer);
+
+            BackgroundObject backgroundObject2 = (BackgroundObject)PoolManager.instance.Get(PoolObjectType.Background, image2Parent);
+            backgroundObject2.transform.localPosition = Vector3.zero;
+            backgroundObject2.SetSprite(spriteData.sprite, spriteData.orderInLayer);
         }
 
     }

@@ -20,8 +20,7 @@ public class DifferenceObject : SpriteObject, IClickable, IPoolable
         Found();
         pairDifferenceObject.Found();
 
-        CorrectCheck correctCheck1 = null, correctCheck2 = null;
-        FactoryManager.instance.FillCorrectCheckPair(correctCheck1, correctCheck2, transform.position, pairDifferenceObject.transform.position);
+        FactoryManager.instance.FillCorrectCheckPair(transform.position, pairDifferenceObject.transform.position);
         Signals.OnFound?.Invoke();
     }
 

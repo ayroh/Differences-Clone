@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
 
     [Header("Values")]
     [SerializeField] private LayerMask clickableLayers;
+    [SerializeField] private LayerMask backgroundLayer;
 
     private int inputCount = 0;
 
@@ -38,13 +39,10 @@ public class InputManager : MonoBehaviour
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics2D.RaycastNonAlloc(ray.origin, ray.direction, hit, 100f, clickableLayers) != 0)
-            {
                 hit[0].transform.GetComponent<IClickable>().Click();
-            }
-            else
-            {
-                Signals.OnFailClick?.Invoke();
-            }
+
+            else if(Physics2D.RaycastNonAlloc(ray.origin, ray.direction, hit, 100f, backgroundLayer) != 0)
+                hit[0].transform.GetComponent<IClickable>().Click();
         }
     }
 

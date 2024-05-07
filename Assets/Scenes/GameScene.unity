@@ -870,6 +870,9 @@ MonoBehaviour:
   clickableLayers:
     serializedVersion: 2
     m_Bits: 192
+  backgroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1000645957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allLevels: {fileID: 11400000, guid: 3264bde5088dbc942b0d2332db863d3f, type: 2}
-  factoryManager: {fileID: 66731467}
 --- !u!1 &1741300137
 GameObject:
   m_ObjectHideFlags: 0
