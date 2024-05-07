@@ -20,7 +20,13 @@ public class LifeManager : MonoBehaviour
 
     private void StartGame() => CreateLifes(3);
 
-    public async void ReviveLifes(int numberOfLifes)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            CreateLifes(2);
+    }
+
+    public async UniTask ReviveLifes(int numberOfLifes)
     {
         if (numberOfLifes < 0)
         {
@@ -50,8 +56,12 @@ public class LifeManager : MonoBehaviour
             Debug.LogError("LifeManager: CreateLifes, number of lives is below zero!");
             return;
         }
+        int count = Mathf.Min(numberOfLifes, lifes.Count - (currentLife + 1));
 
-        for(int i = 0;i < numberOfLifes;i++)
+        await ReviveLifes(count);
+
+        count = numberOfLifes - count;
+        for(int i = 0;i < count;i++)
         {
             Life newLife = FactoryManager.instance.GetLife();
             newLife.transform.SetParent(lifeParent);

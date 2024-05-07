@@ -27,8 +27,8 @@ public class ScoreManager : MonoBehaviour
     {
         for (int i = currentScore - 1;i >= 0;i--)
         {
-            scores[i].PlayAnimation(Constants.ScoreCleanAnimationName);
             currentScore--;
+            scores[i].PlayAnimation(Constants.ScoreCleanAnimationName);
 
             float timer = 0f;
             while (timer < Constants.ScoreTimeBetweenCreation)
