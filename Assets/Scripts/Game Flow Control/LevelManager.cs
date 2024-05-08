@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
 
     private void StartGame()
     {
-        CreateLevel(allLevels.levels[0]);
+        CreateLevel(allLevels.levels[1]);
     }
 
     private void CreateLevel(LevelData levelData)

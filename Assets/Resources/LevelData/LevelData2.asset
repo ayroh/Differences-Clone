@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7aad4cae7b63243b5232c1f1aa2f3b, type: 3}
+  m_Name: LevelData2
+  m_EditorClassIdentifier: 
+  background:
+    sprite: {fileID: 21300000, guid: 45a37f5a21a36394585c509b4d4c74d3, type: 3}
+    localPosition: {x: 0, y: 0}
+    orderInLayer: -1
+  differences:
+  - difference1:
+      sprite: {fileID: 21300000, guid: 49d0e0632694782478e543e79cd77112, type: 3}
+      localPosition: {x: -1.01, y: 2.69}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 21300000, guid: 231f8f18505abf64195e312ea5f0a7e5, type: 3}
+      localPosition: {x: -1.01, y: 2.69}
+      orderInLayer: 0
+  - difference1:
+      sprite: {fileID: 21300000, guid: ea06b5010cebadc41bccd09512f804be, type: 3}
+      localPosition: {x: -2.14, y: -3.58}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 21300000, guid: fbfd4684730109646937bbfb119e4466, type: 3}
+      localPosition: {x: -2.335, y: -4.17}
+      orderInLayer: 0
+  - difference1:
+      sprite: {fileID: 21300000, guid: fbd521f400f053d4a83c0c5495da614f, type: 3}
+      localPosition: {x: -3.93, y: 1.44}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 21300000, guid: 049576d5ed8ab614b91d00258dfe077f, type: 3}
+      localPosition: {x: -4.317, y: 2.8310003}
+      orderInLayer: 0
+  - difference1:
+      sprite: {fileID: 21300000, guid: 5f529e683998da14d90bca14258877af, type: 3}
+      localPosition: {x: 2.84, y: -1.82}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 21300000, guid: f57e5c8f3e898b2408990ec08079e375, type: 3}
+      localPosition: {x: 2.84, y: -1.8199997}
+      orderInLayer: 0
+  - difference1:
+      sprite: {fileID: 21300000, guid: 2798679bc32ddc342aa670a1dee11f45, type: 3}
+      localPosition: {x: 6.15, y: 0.3399999}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 21300000, guid: ef694c47a10dc134c8e264edb7dc4d7d, type: 3}
+      localPosition: {x: 5.98, y: -0.09000015}
+      orderInLayer: 0
+  - difference1:
+      sprite: {fileID: 21300000, guid: a52070dbec21f584d814a4b8f16aa4ae, type: 3}
+      localPosition: {x: -4.136, y: -4.79}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 21300000, guid: 01d98c92fab8b774ea836092c1f1f082, type: 3}
+      localPosition: {x: -4.136, y: -4.79}
+      orderInLayer: 0
+  - difference1:
+      sprite: {fileID: 21300000, guid: daee3bff83e41e5418373b1932408d46, type: 3}
+      localPosition: {x: 2.77, y: -4.99}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 0}
+      localPosition: {x: 0, y: 0}
+      orderInLayer: 0
+  - difference1:
+      sprite: {fileID: 21300000, guid: 42b0a311955782a4aa4c85376181492d, type: 3}
+      localPosition: {x: 1.15, y: -0.6700001}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 21300000, guid: 9304bddaa580d81428cccb886a3a81ad, type: 3}
+      localPosition: {x: 1.15, y: -0.6700001}
+      orderInLayer: 0
+  - difference1:
+      sprite: {fileID: 0}
+      localPosition: {x: 0, y: 0}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 21300000, guid: bd0c2e632c8a148439c2228d58380348, type: 3}
+      localPosition: {x: 6.18, y: -4.1100006}
+      orderInLayer: 0
+  - difference1:
+      sprite: {fileID: 0}
+      localPosition: {x: 0, y: 0}
+      orderInLayer: 0
+    difference2:
+      sprite: {fileID: 21300000, guid: c3d36a309e9bf8b4b9251dc4f72ab0aa, type: 3}
+      localPosition: {x: 1.95, y: 2.44}
+      orderInLayer: 0
+  bothLevelSprites:
+  - sprite: {fileID: 21300000, guid: b750fc8562fe78545a12eb2b11ac6423, type: 3}
+    localPosition: {x: 2.25, y: 2.0100002}
+    orderInLayer: 1

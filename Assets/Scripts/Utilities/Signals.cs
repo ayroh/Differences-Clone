@@ -8,7 +8,6 @@ namespace Utilities.Signals
 {
     public static class Signals
     {
-
         public static Action<bool> OnInputAdd = delegate { };
 
         public static Action<GameState> OnGameStateChanged = delegate { };

@@ -16,6 +16,12 @@ public class LevelData : ScriptableObject
 public class DifferenceData
 {
     public SpriteData difference1, difference2;
+
+    public DifferenceData(SpriteData difference1, SpriteData difference2)
+    {
+        this.difference1 = difference1;
+        this.difference2 = difference2;
+    }
 }
 
 [Serializable]
@@ -24,4 +30,11 @@ public class SpriteData
     public Sprite sprite;
     public Vector2 localPosition;
     public int orderInLayer;
+
+    public SpriteData(Sprite sprite, Vector2 localPosition, int orderInLayer)
+    {
+        this.sprite = sprite;
+        this.localPosition = localPosition;
+        this.orderInLayer = orderInLayer;
+    }
 }

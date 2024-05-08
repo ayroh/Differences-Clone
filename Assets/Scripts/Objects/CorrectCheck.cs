@@ -11,9 +11,6 @@ public class CorrectCheck : SpriteObject, IClickable, IPoolable
     [Header("References")]
     [SerializeField] private BoxCollider2D boxCollider;
 
-    [Header("Values")]
-    [SerializeField] private AnimationCurve shakeCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-
     public override PoolObjectType poolObjectType { get => PoolObjectType.CorrectCheck; }
 
     private bool isShaking = false;
@@ -69,7 +66,7 @@ public class CorrectCheck : SpriteObject, IClickable, IPoolable
         float timer = 0f;
         while(timer < Constants.CorrectCheckClickShakeAnimationTime)
         {
-            transform.position = Vector2.Lerp(startPos, endPos, shakeCurve.Evaluate(timer / Constants.CorrectCheckClickShakeAnimationTime));
+            transform.position = Vector2.Lerp(startPos, endPos, Curves.instance.correctCheckBounceCurve.Evaluate(timer / Constants.CorrectCheckClickShakeAnimationTime));
             timer += Time.deltaTime;
             await UniTask.NextFrame();
         }

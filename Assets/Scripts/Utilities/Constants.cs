@@ -1,5 +1,7 @@
 // Constants
 
+using UnityEngine;
+
 namespace Utilities.Constants
 {
     public static class Constants
@@ -23,8 +25,6 @@ namespace Utilities.Constants
         public static string ScoreFoundAnimationName = "Found";
         public static string ScoreColorizeAnimationName = "Colorize";
         public static string ScoreCleanAnimationName = "Clean";
-
-
 
     }
 }
