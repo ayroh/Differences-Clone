@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: 629475797}
   - component: {fileID: 629475798}
   m_Layer: 0
-  m_Name: UICamera
+  m_Name: ParticleCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

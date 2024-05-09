@@ -78,7 +78,6 @@ namespace Objects
 
         public override void ResetObject(Transform parent = null)
         {
-            transform.SetParent(parent);
             gameObject.SetActive(false);
         }
 
