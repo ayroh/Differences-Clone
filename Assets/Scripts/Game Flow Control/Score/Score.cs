@@ -10,7 +10,7 @@ public class Score : UIImageObject, IPoolable
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Animation scoreAnimation;
 
-    public virtual PoolObjectType poolObjectType { get => PoolObjectType.Score; }
+    public override PoolObjectType poolObjectType { get => PoolObjectType.Score; }
 
     public void PlayAnimation(string animationName) => scoreAnimation.Play(animationName);
 

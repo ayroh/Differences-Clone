@@ -12,9 +12,15 @@ namespace Factory
         [SerializeField] private Transform image1Parent;
         [SerializeField] private Transform image2Parent;
         [SerializeField] private RectTransform canvas;
+        [SerializeField] private RectTransform particleCanvas;
+
+        [Header("References")]
+        [SerializeField] private ScoreManager scoreManager;
+        [SerializeField] private Camera mainCam;
 
 
-        public void FillDifferenceObjectPair(DifferenceData differenceData)
+
+        public void CreateDifferenceObjectPair(DifferenceData differenceData)
         {
             if(differenceData.difference1.sprite == null && differenceData.difference2.sprite == null)
             {
@@ -50,7 +56,7 @@ namespace Factory
             difference2.SetPair(difference1);
         }
 
-        public void FillSpriteObjectPair(SpriteData spriteData)
+        public void CreateSpriteObjectPair(SpriteData spriteData)
         {
             if (spriteData.sprite == null)
             {
@@ -66,7 +72,7 @@ namespace Factory
             spriteObject2.transform.localPosition = spriteData.localPosition;
         }
 
-        public void FillCorrectCheckPair(Vector2 pos1, Vector2 pos2)
+        public void CreateCorrectCheckPair(Vector2 pos1, Vector2 pos2)
         {
             float noisedScale = Extentions.Noise(1, .15f);
 
@@ -103,6 +109,12 @@ namespace Factory
             BackgroundObject backgroundObject2 = (BackgroundObject)PoolManager.instance.Get(PoolObjectType.Background, image2Parent);
             backgroundObject2.transform.localPosition = Vector3.zero;
             backgroundObject2.SetSprite(spriteData.sprite, spriteData.orderInLayer);
+        }
+
+        public void CreateFoundParticle(Vector3 differenceObjectWorldPosition)
+        {
+            FoundParticle foundParticle = (FoundParticle)PoolManager.instance.Get(PoolObjectType.FoundParticle, particleCanvas);
+            foundParticle.DragToPointAndRelease(mainCam.WorldToScreenPoint(differenceObjectWorldPosition), scoreManager.GetCurrentScoreCanvasPosition());
         }
 
     }

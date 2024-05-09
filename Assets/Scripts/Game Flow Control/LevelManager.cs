@@ -22,12 +22,12 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0;i < levelData.differences.Count;++i)
         {
-            FactoryManager.instance.FillDifferenceObjectPair(levelData.differences[i]);
+            FactoryManager.instance.CreateDifferenceObjectPair(levelData.differences[i]);
         }
 
         for (int i = 0;i < levelData.bothLevelSprites.Count;++i)
         {
-            FactoryManager.instance.FillSpriteObjectPair(levelData.bothLevelSprites[i]);
+            FactoryManager.instance.CreateSpriteObjectPair(levelData.bothLevelSprites[i]);
         }
     }
 

@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class UIImageObject : MonoBehaviour
+public abstract class UIImageObject : MonoBehaviour, IPoolable
 {
     [SerializeField] protected Image mainImage;
+
+    public virtual PoolObjectType poolObjectType { get => PoolObjectType.NULL; }
 
     protected virtual void Awake() { }
 

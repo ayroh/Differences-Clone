@@ -12,7 +12,7 @@ public class Life : UIImageObject, IPoolable
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Animation lifeAnimation;
 
-    public PoolObjectType poolObjectType { get => PoolObjectType.Life; }
+    public override PoolObjectType poolObjectType { get => PoolObjectType.Life; }
 
     public void PlayAnimation(string animationName) => lifeAnimation.Play(animationName);
 

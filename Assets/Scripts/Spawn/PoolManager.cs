@@ -48,12 +48,15 @@ namespace Pool
 
         public IPoolable Get(PoolObjectType poolObjectType, Transform parent = null)
         {
+            if(poolObjectType == PoolObjectType.NULL)
+            {
+                Debug.LogError("PoolManager: Get, tried to Get NULL type!");
+                return null;
+            }
+
             IPoolable poolable = poolTypeTpPoolItemDictionary[poolObjectType].Pop();
 
-            if (parent != null)
-                poolable.Initialize(parent);
-            else
-                poolable.Initialize(ingameParent);
+            poolable.Initialize(parent != null ? parent : ingameParent);
 
             return poolable;
         }
@@ -123,11 +126,12 @@ namespace Pool
     public enum PoolObjectType
     {
         Difference,
-        Particle,
+        FoundParticle,
         Sprite,
         CorrectCheck,
         Life,
         Score,
-        Background
+        Background,
+        NULL
     }
 }

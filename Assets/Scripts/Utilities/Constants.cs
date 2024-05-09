@@ -26,5 +26,9 @@ namespace Utilities.Constants
         public static string ScoreColorizeAnimationName = "Colorize";
         public static string ScoreCleanAnimationName = "Clean";
 
+        // Found Particle
+        public static float FoundParticleAnimationConstant = 1 / 1500f;
+
+
     }
 }

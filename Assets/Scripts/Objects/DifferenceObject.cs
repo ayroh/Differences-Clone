@@ -20,8 +20,9 @@ public class DifferenceObject : SpriteObject, IClickable, IPoolable
         Found();
         pairDifferenceObject.Found();
 
-        FactoryManager.instance.FillCorrectCheckPair(transform.position, pairDifferenceObject.transform.position);
+        FactoryManager.instance.CreateCorrectCheckPair(transform.position, pairDifferenceObject.transform.position);
         Signals.OnFound?.Invoke();
+        FactoryManager.instance.CreateFoundParticle(transform.position);
     }
 
     public void Found()

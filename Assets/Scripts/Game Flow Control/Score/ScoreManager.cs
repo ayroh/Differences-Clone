@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
 
         if (numberOfScores < 0)
         {
-            Debug.LogError("LifeManager: CreateLifes, number of lives is below zero!");
+            Debug.LogError("LifeManager: CreateScores, number of scores is below zero!");
             return;
         }
 
@@ -66,6 +66,15 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public Vector2 GetCurrentScoreCanvasPosition()
+    {
+        if(currentScore == -1)
+        {
+            Debug.LogError("ScoreManager: GetCurrentScoreCanvasPosition, there is no current score to return!");
+            return default;
+        }
+        return scores[currentScore - 1].transform.position;
+    }
 
     private void IncreaseScore()
     {

@@ -18,3 +18,4 @@ MonoBehaviour:
   life: {fileID: 1303413840374966558, guid: 3e8883b3296a4f349811235f3281bc19, type: 3}
   score: {fileID: 8649681616732951942, guid: 848b30c9076eab74399d72fc36bc2681, type: 3}
   backgroundObject: {fileID: 5090377734734600495, guid: a233f503a9108cb42914de1e4f635f36, type: 3}
+  foundParticle: {fileID: 9076945504772626956, guid: 535a5dd952649784db791df76033ed31, type: 3}
