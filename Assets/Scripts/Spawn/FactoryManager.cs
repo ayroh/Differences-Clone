@@ -119,5 +119,12 @@ namespace Factory
             foundParticle.DragToPointAndRelease(mainCam.WorldToScreenPoint(differenceObjectWorldPosition), scoreManager.GetCurrentScoreCanvasPosition());
         }
 
+        public void CreateWrongCheck(Vector2 screenPos)
+        {
+            WrongCheck wrongCheck = (WrongCheck)PoolManager.instance.Get(PoolObjectType.WrongCheck);
+            wrongCheck.transform.position = mainCam.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, -mainCam.transform.position.z));
+            wrongCheck.GrowAndRotate();
+        }
+
     }
 }

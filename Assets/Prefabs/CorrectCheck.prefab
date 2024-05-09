@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5239252811977758515}
   - component: {fileID: 5228032446148470138}
   m_Layer: 7
-  m_Name: CorrectCheckObject
+  m_Name: CorrectCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

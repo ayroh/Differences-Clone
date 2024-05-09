@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utilities.Signals;
 using Pool;
+using Factory;
 
 namespace Objects
 {
@@ -12,7 +13,11 @@ namespace Objects
 
         public override PoolObjectType poolObjectType { get => PoolObjectType.Background; }
 
-        public void Click() => Signals.OnFailClick?.Invoke();
+        public void Click()
+        {
+            FactoryManager.instance.CreateWrongCheck(Input.mousePosition);
+            Signals.OnFailClick?.Invoke();
+        }
 
         public override void SetSprite(Sprite newSprite, int orderInLayer = 0, float spriteAlpha = 1f)
         {

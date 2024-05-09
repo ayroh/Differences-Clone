@@ -13,7 +13,7 @@ namespace Utilities.Constants
         // Sprite Size
         public static float SpriteColliderSizeConstant = 1.2f;
 
-        // CorrectCheck
+        // Correct Check
         public static float CorrectCheckImageAnimationTime = .3f;
         public static float CorrectCheckClickShakeAnimationTime = .5f;
 
@@ -33,6 +33,8 @@ namespace Utilities.Constants
         // Found Particle
         public static float FoundParticleAnimationConstant = 1 / 1500f;
 
+        // Wrong Check
+        public static float WrongCheckAnimationTime = 1f;
 
     }
 }

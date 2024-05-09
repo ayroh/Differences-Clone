@@ -132,6 +132,7 @@ namespace Pool
         Life,
         Score,
         Background,
-        NULL
+        NULL,
+        WrongCheck
     }
 }
