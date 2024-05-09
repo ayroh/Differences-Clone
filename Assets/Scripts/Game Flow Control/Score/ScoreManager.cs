@@ -19,13 +19,24 @@ namespace ScoreManage
         private int maxScore = 10;
         private int currentScore = 0;
 
+
+        public Vector2 GetCurrentScoreCanvasPosition()
+        {
+            if(currentScore == -1)
+            {
+                Debug.LogError("ScoreManager: GetCurrentScoreCanvasPosition, there is no current score to return!");
+                return default;
+            }
+            return scores[currentScore - 1].transform.position;
+        }
+
         private async void StartGame()
         {
             await CleanScores();
             CreateScores(maxScore - scores.Count);
         }
 
-        public async UniTask CleanScores()
+        private async UniTask CleanScores()
         {
             for (int i = currentScore - 1;i >= 0;i--)
             {
@@ -55,7 +66,7 @@ namespace ScoreManage
             for (int i = 0;i < numberOfScores;i++)
             {
                 Score newScore = FactoryManager.instance.GetScore();
-                newScore.transform.SetParent(scoreParent);
+                newScore.transform.SetParent(scoreParent, false);
                 scores.Add(newScore);
 
                 float timer = 0f;
@@ -67,15 +78,6 @@ namespace ScoreManage
             }
         }
 
-        public Vector2 GetCurrentScoreCanvasPosition()
-        {
-            if(currentScore == -1)
-            {
-                Debug.LogError("ScoreManager: GetCurrentScoreCanvasPosition, there is no current score to return!");
-                return default;
-            }
-            return scores[currentScore - 1].transform.position;
-        }
 
         private void IncreaseScore()
         {

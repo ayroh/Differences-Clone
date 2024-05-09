@@ -21,9 +21,9 @@ namespace LifeManage
 
         public override void Initialize(Transform parent = null)
         {
+            gameObject.SetActive(true);
             transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
             transform.localScale = Vector3.one;
-            gameObject.SetActive(true);
             mainImage.gameObject.SetActive(true);
             PlayAnimation(Constants.LifeColorizeAnimationName);
         }

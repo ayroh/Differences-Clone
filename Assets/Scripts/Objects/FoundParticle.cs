@@ -34,9 +34,6 @@ namespace Objects
             ReleaseAfterAllParticlesFinished();
         }
 
-        // Screen Point (0,0) is left-bottom but UICamera (0,0) is middle of the screen. To convert this I use Screen class.
-        private Vector2 ScreenPointToTransformPoint(Vector2 screenPoint) => new Vector2(screenPoint.x - (Screen.width / 2), screenPoint.y - (Screen.height / 2));
-
         public async void ReleaseAfterAllParticlesFinished()
         {
             particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
@@ -44,6 +41,9 @@ namespace Objects
             PoolManager.instance.Release(this);
         }
 
+
+        // Screen Point (0,0) is left-bottom but UICamera (0,0) is middle of the screen. To convert this I use Screen class.
+        private Vector2 ScreenPointToTransformPoint(Vector2 screenPoint) => new Vector2(screenPoint.x - (Screen.width / 2), screenPoint.y - (Screen.height / 2));
 
     }
 }

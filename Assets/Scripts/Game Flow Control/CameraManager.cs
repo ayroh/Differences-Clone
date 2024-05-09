@@ -14,7 +14,11 @@ namespace CameraManage
         {
             for(int i = 0; i < cameras.Count; i++)
             {
-                cameras[i].orthographicSize = Constants.BaseCameraSize * ((float)Screen.height / Screen.width) * Constants.BaseCameraAspect;
+                float screenRatio = ((float)Screen.width / Screen.height);
+                if (Constants.BaseCameraAspect / screenRatio > 1)
+                {
+                    cameras[i].orthographicSize = Constants.BaseCameraSize * Constants.BaseCameraAspect / screenRatio;
+                }
             }
         }
 

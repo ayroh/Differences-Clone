@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Factory;
 using Pool;
 using System.Collections;
 using System.Collections.Generic;

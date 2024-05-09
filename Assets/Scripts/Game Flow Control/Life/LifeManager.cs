@@ -63,7 +63,7 @@ namespace LifeManage
             for (int i = 0;i < count;i++)
             {
                 Life newLife = FactoryManager.instance.GetLife();
-                newLife.transform.SetParent(lifeParent);
+                newLife.transform.SetParent(lifeParent, false);
                 lifes.Add(newLife);
 
                 float timer = 0f;
