@@ -6,7 +6,11 @@ namespace Utilities.Constants
 {
     public static class Constants
     {
+        // Camera
+        public static float BaseCameraSize = 16;
+        public static float BaseCameraAspect = 1080 / 1920f;
 
+        // Sprite Size
         public static float SpriteColliderSizeConstant = 1.2f;
 
         // CorrectCheck
