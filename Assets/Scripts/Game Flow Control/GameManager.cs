@@ -6,68 +6,73 @@ using UnityEngine;
 using Utilities.Enums;
 using Utilities.Signals;
 
-public class GameManager : MonoBehaviour
+namespace Game
 {
-    public static GameState gameState { get; private set; }
-
-    private void Start()
+    public class GameManager : MonoBehaviour
     {
-        StartGame();
-    }
+        public static GameState gameState { get; private set; }
 
-    private void StartGame()
-    {
-        SetGameState(GameState.Play);
-        Signals.OnGameStart?.Invoke();
-    }
+        private void Start()
+        {
+            StartGame();
+        }
 
-    public void SetGameState(GameState newGameState)
-    {
-        //switch (gameState) { }
+        private void StartGame()
+        {
+            SetGameState(GameState.Play);
+            Signals.OnGameStart?.Invoke();
+        }
 
-        gameState = newGameState;
+        public void SetGameState(GameState newGameState)
+        {
+            //switch (gameState) { }
 
-        //switch (newGameState) { }
+            gameState = newGameState;
 
-        Signals.OnGameStateChanged?.Invoke(gameState);
-    }
+            //switch (newGameState) { }
 
-    public async void RestartGame()
-    {
-        await UniTask.Delay(250);
-        PoolManager.instance.ResetPool(PoolObjectType.CorrectCheck);
-        PoolManager.instance.ResetPool(PoolObjectType.Difference);
-        PoolManager.instance.ResetPool(PoolObjectType.Sprite);
-        PoolManager.instance.ResetPool(PoolObjectType.Background);
+            Signals.OnGameStateChanged?.Invoke(gameState);
+        }
 
-        await UniTask.Delay(500);
+        public async void RestartGame()
+        {
+            await UniTask.Delay(250);
+            PoolManager.instance.ResetPool(PoolObjectType.CorrectCheck);
+            PoolManager.instance.ResetPool(PoolObjectType.Difference);
+            PoolManager.instance.ResetPool(PoolObjectType.Sprite);
+            PoolManager.instance.ResetPool(PoolObjectType.Background);
 
-        StartGame();
-    }
+            await UniTask.Delay(500);
 
-    private void WinGame()
-    {
-        SetGameState(GameState.Success);
-        print("WON");
-    }
+            StartGame();
+        }
 
-    private void LoseGame()
-    {
-        SetGameState(GameState.Fail);
-        print("LOST");
-    }
+        private void WinGame()
+        {
+            SetGameState(GameState.Success);
+            print("WON");
+        }
 
-    private void OnEnable()
-    {
-        Signals.OnRestartGame += RestartGame;
-        Signals.OnLifeEnded += LoseGame;
-        Signals.OnScoreFinished += WinGame;
-    }
-    private void OnDisable()
-    {
-        Signals.OnRestartGame -= RestartGame;
-        Signals.OnLifeEnded -= LoseGame;
-        Signals.OnScoreFinished -= WinGame;
+        private void LoseGame()
+        {
+            SetGameState(GameState.Fail);
+            print("LOST");
+        }
+
+        private void OnEnable()
+        {
+            Signals.OnRestartGame += RestartGame;
+            Signals.OnLifeEnded += LoseGame;
+            Signals.OnScoreFinished += WinGame;
+        }
+        private void OnDisable()
+        {
+            Signals.OnRestartGame -= RestartGame;
+            Signals.OnLifeEnded -= LoseGame;
+            Signals.OnScoreFinished -= WinGame;
+        }
+
     }
 
 }
+

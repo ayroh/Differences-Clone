@@ -8,94 +8,100 @@ using Utilities.Constants;
 using Utilities.Enums;
 using Utilities.Signals;
 
-public class LifeManager : MonoBehaviour
+namespace LifeManage
 {
-    [Header("References")]
-    [SerializeField] private Transform lifeParent;
 
-    private List<Life> lifes = new();
 
-    private int currentLife = -1;
-    private int maxLife = 3;
-    public int NumberOfLives => lifes.Count;
-
-    private void StartGame() => CreateLifes(maxLife - (currentLife + 1));
-
-    public async UniTask ReviveLifes(int numberOfLifes)
+    public class LifeManager : MonoBehaviour
     {
-        if (numberOfLifes < 0)
-        {
-            Debug.LogError("LifeManager: ReviveLifes, number of lives is below zero!");
-            return;
-        }
+        [Header("References")]
+        [SerializeField] private Transform lifeParent;
 
-        int count = Mathf.Min(numberOfLifes, lifes.Count - (currentLife + 1));
-        for (int i = 0;i < count;i++)
-        {
-            currentLife++;
-            lifes[currentLife].PlayAnimation(Constants.LifeReviveLifeAnimationName);
+        private List<Life> lifes = new();
 
-            float timer = 0f;
-            while (timer < Constants.LifeTimeBetweenCreation)
+        private int currentLife = -1;
+        private int maxLife = 3;
+        public int NumberOfLives => lifes.Count;
+
+        private void StartGame() => CreateLifes(maxLife - (currentLife + 1));
+
+        public async UniTask ReviveLifes(int numberOfLifes)
+        {
+            if (numberOfLifes < 0)
             {
-                timer += Time.deltaTime;
-                await UniTask.NextFrame();
+                Debug.LogError("LifeManager: ReviveLifes, number of lives is below zero!");
+                return;
+            }
+
+            int count = Mathf.Min(numberOfLifes, lifes.Count - (currentLife + 1));
+            for (int i = 0;i < count;i++)
+            {
+                currentLife++;
+                lifes[currentLife].PlayAnimation(Constants.LifeReviveLifeAnimationName);
+
+                float timer = 0f;
+                while (timer < Constants.LifeTimeBetweenCreation)
+                {
+                    timer += Time.deltaTime;
+                    await UniTask.NextFrame();
+                }
             }
         }
-    }
 
-    private async void CreateLifes(int numberOfLifes)
-    {
-        if(numberOfLifes < 0)
+        private async void CreateLifes(int numberOfLifes)
         {
-            Debug.LogError("LifeManager: CreateLifes, number of lives is below zero!");
-            return;
-        }
-        int count = Mathf.Min(numberOfLifes, lifes.Count - (currentLife + 1));
-
-        await ReviveLifes(count);
-
-        count = numberOfLifes - count;
-        for(int i = 0;i < count;i++)
-        {
-            Life newLife = FactoryManager.instance.GetLife();
-            newLife.transform.SetParent(lifeParent);
-            lifes.Add(newLife);
-
-            float timer = 0f;
-            while(timer < Constants.LifeTimeBetweenCreation)
+            if (numberOfLifes < 0)
             {
-                timer += Time.deltaTime;
-                await UniTask.NextFrame();
+                Debug.LogError("LifeManager: CreateLifes, number of lives is below zero!");
+                return;
             }
-            currentLife++;
+            int count = Mathf.Min(numberOfLifes, lifes.Count - (currentLife + 1));
+
+            await ReviveLifes(count);
+
+            count = numberOfLifes - count;
+            for (int i = 0;i < count;i++)
+            {
+                Life newLife = FactoryManager.instance.GetLife();
+                newLife.transform.SetParent(lifeParent);
+                lifes.Add(newLife);
+
+                float timer = 0f;
+                while (timer < Constants.LifeTimeBetweenCreation)
+                {
+                    timer += Time.deltaTime;
+                    await UniTask.NextFrame();
+                }
+                currentLife++;
+            }
+        }
+
+        private void RefillLifes() => _ = ReviveLifes(maxLife);
+
+        private void DecreaseLife()
+        {
+            if (NumberOfLives == 0)
+                return;
+
+            lifes[currentLife].PlayAnimation(Constants.LifeKillLifeAnimationName);
+
+            if (--currentLife == -1)
+                Signals.OnLifeEnded?.Invoke();
+        }
+
+
+        private void OnEnable()
+        {
+            Signals.OnRefillLifes += RefillLifes;
+            Signals.OnFailClick += DecreaseLife;
+            Signals.OnGameStart += StartGame;
+        }
+        private void OnDisable()
+        {
+            Signals.OnRefillLifes -= RefillLifes;
+            Signals.OnFailClick -= DecreaseLife;
+            Signals.OnGameStart -= StartGame;
         }
     }
 
-    private void RefillLifes() => _ = ReviveLifes(maxLife);
-
-    private void DecreaseLife()
-    {
-        if (NumberOfLives == 0)
-            return;
-
-        lifes[currentLife].PlayAnimation(Constants.LifeKillLifeAnimationName);
-
-        if(--currentLife == -1)
-            Signals.OnLifeEnded?.Invoke();
-    }
-
-
-    private void OnEnable()
-    {
-        Signals.OnRefillLifes += RefillLifes;
-        Signals.OnFailClick += DecreaseLife;
-        Signals.OnGameStart += StartGame;
-    }
-    private void OnDisable()
-    {
-        Signals.OnRefillLifes -= RefillLifes;
-        Signals.OnFailClick -= DecreaseLife;
-        Signals.OnGameStart -= StartGame;
-    }
 }

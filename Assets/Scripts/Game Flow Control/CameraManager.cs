@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utilities.Constants;
 
-public class CameraManager : MonoBehaviour
+namespace CameraManage
 {
-
-    [SerializeField] List<Camera> cameras;
- 
-    void Awake()
+    public class CameraManager : MonoBehaviour
     {
-        for(int i = 0; i < cameras.Count; i++)
+
+        [SerializeField] List<Camera> cameras;
+
+        void Awake()
         {
-            cameras[i].orthographicSize = Constants.BaseCameraSize * ((float)Screen.height / Screen.width) * Constants.BaseCameraAspect;
+            for(int i = 0; i < cameras.Count; i++)
+            {
+                cameras[i].orthographicSize = Constants.BaseCameraSize * ((float)Screen.height / Screen.width) * Constants.BaseCameraAspect;
+            }
         }
+
     }
 
 }
+

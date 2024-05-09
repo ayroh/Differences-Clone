@@ -1,4 +1,7 @@
+using LifeManage;
+using Objects;
 using Pool;
+using ScoreManage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

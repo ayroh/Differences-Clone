@@ -1,7 +1,10 @@
+using Objects;
 using Pool;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using LifeManage;
+using ScoreManage;
 
 [CreateAssetMenu(menuName = "Scriptables/PoolObjects")]
 public class PoolObjects : ScriptableObject

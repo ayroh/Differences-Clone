@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class UIButtonObject : UIImageObject
+
+namespace Objects
 {
-    [SerializeField] private Button button;
+    public abstract class UIButtonObject : UIImageObject
+    {
+        [SerializeField] private Button button;
 
-    protected override void Awake() { }
+        protected override void Awake() { }
 
-    public void SetButtonActive(bool choice) => button.enabled = choice;
+        public void SetButtonActive(bool choice) => button.enabled = choice;
 
 
+    }
 }

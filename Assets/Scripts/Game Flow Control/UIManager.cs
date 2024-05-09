@@ -1,14 +1,12 @@
-using Cysharp.Threading.Tasks;
-using Factory;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Utilities.Constants;
 using Utilities.Signals;
 
-public class UIManager : MonoBehaviour
+namespace UI
 {
-    public void RestartGameButton() => Signals.OnRestartGame?.Invoke();
+    public class UIManager : MonoBehaviour
+    {
+        public void RestartGameButton() => Signals.OnRestartGame?.Invoke();
 
-    public void RefillLifesButton() => Signals.OnRefillLifes?.Invoke();
+        public void RefillLifesButton() => Signals.OnRefillLifes?.Invoke();
+    }
 }
