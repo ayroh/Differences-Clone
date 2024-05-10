@@ -1,0 +1,26 @@
+- Ana ekranda test etme rahatlığı açısından, isimlerinden de anlaşılacağı üzere RestartGame ve RefillLives adlı 2 tane buton koydum.
+
+
+- LevelData oluşturmak için bir LevelEditor yazdım. Ekranın yukarısından "Level/LevelEditor" kısmından açabilirsiniz. Örnek olması açısından "Scenes" klasörüne bir test sahnesi hazırladım.
+
+Yapmanız gereken:
+ sahne içerisinde objeleri sahnedeki Image1 ve Image2 parentlarına göre lokal pozisyonlarını, orderInLayer'larını doğru ayarladıktan sonra LevelEditor ekranında: iki sahnede de olacak objeleri BothLevelSprites'a, iki sahnede birbiriyle bağlantılı olacak çiftleri ise DifferenceSprites'a referans vermek. Bir sahnede olacak ama diğer sahnede "boşluk" olarak duracak objeler için DifferenceSprites'ta iki referanstan gerekeni doldurup diğerini null bırakarak sağlayabilirsiniz. En sonda da bölümün ismini girip kaydedebilirsiniz. Örnek olması için "Resources/LevelData/" içerisindeki LevelData1'in değerlerini elimle girdim fakat LevelData2'nin değerlerini editör üzerinden yaptım. Değerlerin aynı olduğunu görebilirsiniz.
+
+
+- Curves adı altında bir SingletonScriptableObject kullanıyorum. Bunun sebebi hem curve değerlerini inspector üzerinden ayarlarken hem de clone objelerin statik bir instance üzerinden bu değerlere ulaşabilmesi içindir.
+
+
+- PoolManager, IPoolable interface'ini uygulayan classları Pool'lamak için bir class. Oyunun başında bu classları PoolObjects ScriptableObject'inden alıp bir Dictionary<PoolObjectType(enum), Pool> şeklinde depolayarak Get ve Release fonksiyonları için generic bir kullanım sağlıyor. Enum üzerinden o objenin poolundan objeden üretiyor. Pool gerekirse bütün kendi aktif objelerini Release'leyebilecek Reset() fonksiyonuna sahip.
+
+- FactoryManager ise aracı bir class olarak PoolManagerden gerekli objeyi aldıktan sonra alınan classa uygun yapılması gereken işlemleri yapıyor. Çoğunlukla her şey çifti halinde bulunduğu ve bu çiftlerin birbirleriyle iletişim kurması gerektiği için bunları beraber oluşturan fonksiyonlar mevcut. Objelerin referanslarına bile ihtiyaç olmadığı için bu fonksiyonlar bazen bu referansları return bile etmeden sadece gerektiğinde Poollar üzerinden Release'leyerek kapatabiliyoruz.
+
+
+- Particle'ları UI'da oynatabilmek için ParticleCamera adlı bir Overlay kamera kullanıyorum.
+
+
+- UI strechlerini tabletlerin de oynayabileceği şekilde ayarladım.
+
+
+- Scriptlerin anlaşılır olması ümidiyle class class açıklamıyorum. Karışık olduğunu düşündüğüm yerlere yorum satırı ekledim.
+
+Teşekkür ederim zaman ayırdığınız için. 
